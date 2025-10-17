@@ -2,6 +2,7 @@ package com.atguigu.java.ai.langchain4j;
 
 import com.atguigu.java.ai.langchain4j.assistant.Assistant;
 import com.atguigu.java.ai.langchain4j.assistant.MemoryChatAssistant;
+import com.atguigu.java.ai.langchain4j.assistant.SeparateChatAssistant;
 import dev.langchain4j.community.model.dashscope.QwenChatModel;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.UserMessage;
@@ -19,9 +20,6 @@ import java.util.Arrays;
 public class ChatMemoryTest {
     @Autowired
     private Assistant assistant;
-    @Autowired
-    private MemoryChatAssistant memoryChatAssistant;
-
     @Test
     public void testChatMemory() {
         String answer1 = assistant.chat("我是环环");
@@ -31,9 +29,9 @@ public class ChatMemoryTest {
         System.out.println(answer2);
     }
 
+
     @Autowired
     private QwenChatModel qwenChatModel;
-
     @Test
     public void testChatMemory2() {
 
@@ -79,6 +77,9 @@ public class ChatMemoryTest {
     }
 
 
+    @Autowired
+    private MemoryChatAssistant memoryChatAssistant;
+
     /**
      * 测试有记忆的大模型助手
      */
@@ -94,6 +95,27 @@ public class ChatMemoryTest {
         System.out.println(answer2);
 
         String answer3 = memoryChatAssistant.chat("上一句我问你什么");
+        System.out.println(answer3);
+    }
+
+    @Autowired
+    private SeparateChatAssistant separateChatAssistant;
+
+
+    /**
+     * 测试分离聊天记录的大模型助手
+     */
+    @Test
+    public void testChatMemory5() {
+        // 第一轮对话
+        String answer1 = separateChatAssistant.chat(1, "我是环环");
+        System.out.println(answer1);
+
+        // 第二轮对话
+        String answer2 = separateChatAssistant.chat(1, "我是谁");
+        System.out.println(answer2);
+
+        String answer3 = separateChatAssistant.chat(2, "我是谁");
         System.out.println(answer3);
     }
 }
