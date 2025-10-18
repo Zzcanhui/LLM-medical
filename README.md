@@ -7,6 +7,7 @@
 项目采用前后端分离架构：
 - **后端**: Spring Boot + LangChain4j AI框架
 - **前端**: Vue 3 + Element Plus + Vite
+![img.png](img.png)
 
 ## 🏥 医疗助手特色功能
 
